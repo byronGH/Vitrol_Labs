@@ -131,9 +131,56 @@
             height: 100vh;
             display: flex;
             align-items: center;
-            margin-top: 0; /* Cubre toda la pantalla */
-            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+            /*margin-top: 0; /* Cubre toda la pantalla */
+            background-image: 
+                linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)),
+                url('obsidian.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative; /* ¡Súper importante para que la capa funcione! */
+
+        } 
+        
+        /* ESTA ES LA CAPA DE VIDRIO AL 100% */
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /*background: rgba(10, 10, 10, 0.1); /* Tinte oscuro (cambia el 0.5 para más/menos oscuro) */
+            backdrop-filter: blur(5px); /* El efecto de desenfoque del fondo */
+            -webkit-backdrop-filter: blur(10px); /* Soporte para Safari */
+            z-index: 1; /* Lo pone encima de la imagen */
         }
+
+        /* ESTA ES LA LUZ DE NEÓN/GLOW (El "Hack") */
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; /* Mismo nivel que el vidrio, o puedes ponerlo en 2 y el texto en 3 */
+            pointer-events: none; /* Evita que esta capa bloquee clics en los botones */
+            
+            /* Creamos un gradiente radial (un círculo de luz roja en el centro que se difumina) */
+            background: radial-gradient(circle at 50% 50%, rgba(118, 10, 10, 0.4) 20%, transparent 50%);
+            
+            /* LA MAGIA: El modo de fusión. Hace que la luz roja "queme" e ilumine la imagen de fondo */
+            mix-blend-mode:color /* Prueba también 'overlay' o 'color-dodge' para diferentes efectos */
+        }
+
+        /* TEXTO DEL HERO */
+        .hero .container {
+            position: relative;
+            z-index: 2; /* Saca el texto y los botones por ENCIMA del vidrio */
+            text-align: center; /* Centramos el texto como lo teníamos antes */
+        }
+        
 
         .hero h1 {
             font-size: 3.5rem;
@@ -290,6 +337,16 @@
                 margin-bottom: 5px;
             }
         }
+
+        .ai-disclaimer {
+            font-family: var(--font-mono); /* Usa la misma fuente de máquina de escribir */
+            color: #444444; /* Un gris muy oscuro para que sea sutil */
+            font-size: 0.7rem;
+            margin-top: 25px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
     </style>
 </head>
 <body>
@@ -386,6 +443,7 @@
     <footer>
         <p>© 2026 Vitrol Labs. All rights reserved. | Pereira - Dosquebradas, Colombia.</p>
         <p class="latin-quote">"Visit Interiora Terrae Rectificando Invenies Occultum Lapidem."</p>
+        <p class="ai-disclaimer">Developed with AI assistance (Google Gemini).</p>
     </footer>
 
 </body>
