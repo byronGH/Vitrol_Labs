@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitrol Labs | Sovereign Systems</title>
+    <style>
+        /* === RESET & VARIABLES === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-color: #0a0a0a; /* Fondo casi negro */
+            --obsidian: #000000;
+            --silver: #c0c0c0;
+            --text-main: #e0e0e0;
+            --accent: #ffffff;
+            --font-main: 'Segoe UI', Helvetica, sans-serif;
+            --font-mono: 'Courier New', Courier, monospace;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* === NAV BAR === */
+        .navbar {
+            background-color: var(--obsidian);
+            height: 80px;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid #1f1f1f;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-group {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+            display: block;
+        }
+
+        .brand-name {
+            color: var(--accent);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-left: 15px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: var(--silver);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent);
+        }
+
+        .btn-nav {
+            border: 1px solid var(--silver);
+            padding: 8px 16px;
+            background: transparent;
+            color: var(--accent) !important;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--accent);
+            color: var(--obsidian) !important;
+        }
+
+        /* === SECTION BASE === */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 50px;
+            border-left: 4px solid var(--accent);
+            padding-left: 15px;
+        }
+
+        /* === HERO SECTION === */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            /*margin-top: 0; /* Cubre toda la pantalla */
+            background-image: 
+                linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)),
+                url('obsidian.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative; /* ¡Súper importante para que la capa funcione! */
+
+        } 
+        
+        /* ESTA ES LA CAPA DE VIDRIO AL 100% */
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /*background: rgba(10, 10, 10, 0.1); /* Tinte oscuro (cambia el 0.5 para más/menos oscuro) */
+            backdrop-filter: blur(5px); /* El efecto de desenfoque del fondo */
+            -webkit-backdrop-filter: blur(10px); /* Soporte para Safari */
+            z-index: 1; /* Lo pone encima de la imagen */
+        }
+
+        /* ESTA ES LA LUZ DE NEÓN/GLOW (El "Hack") */
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; /* Mismo nivel que el vidrio, o puedes ponerlo en 2 y el texto en 3 */
+            pointer-events: none; /* Evita que esta capa bloquee clics en los botones */
+            
+            /* Creamos un gradiente radial (un círculo de luz roja en el centro que se difumina) */
+            background: radial-gradient(circle at 50% 50%, rgba(118, 10, 10, 0.4) 20%, transparent 50%);
+            
+            /* LA MAGIA: El modo de fusión. Hace que la luz roja "queme" e ilumine la imagen de fondo */
+            mix-blend-mode:color /* Prueba también 'overlay' o 'color-dodge' para diferentes efectos */
+        }
+
+        /* TEXTO DEL HERO */
+        .hero .container {
+            position: relative;
+            z-index: 2; /* Saca el texto y los botones por ENCIMA del vidrio */
+            text-align: center; /* Centramos el texto como lo teníamos antes */
+        }
+        
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--silver);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--obsidian);
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--silver);
+        }
+
+        /* === CORE BUSINESS === */
+        .core-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .core-card {
+            background-color: #111;
+            padding: 40px 30px;
+            border: 1px solid #222;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .core-card:hover {
+            transform: translateY(-5px);
+            border-color: #444;
+        }
+
+        .core-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+
+        .core-card blockquote {
+            font-style: italic;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+        }
+
+        /* === MANIFESTO === */
+        .manifesto {
+            background-color: var(--obsidian);
+            text-align: center;
+            padding: 120px 20px;
+            border-top: 1px solid #1f1f1f;
+            border-bottom: 1px solid #1f1f1f;
+        }
+
+        .manifesto p {
+            color: var(--silver);
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* === ACTIVE PROJECTS === */
+        .projects-list {
+            list-style: none;
+        }
+
+        .projects-list li {
+            font-size: 1.2rem;
+            padding: 20px 0;
+            border-bottom: 1px solid #222;
+        }
+
+        .projects-list li strong {
+            color: var(--accent);
+            display: inline-block;
+            width: 200px;
+        }
+
+        /* === CONTACT / FOOTER === */
+        .contact {
+            background-color: #0d0d0d;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 15px;
+            background-color: #000;
+            border: 1px solid #333;
+            color: var(--text-main);
+            font-family: var(--font-main);
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--silver);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: var(--obsidian);
+            border-top: 1px solid #111;
+        }
+
+        footer p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .latin-quote {
+            font-family: var(--font-mono);
+            color: #555;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none; /* En móvil se ocultaría, ideal para un menú hamburguesa futuro */
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .projects-list li strong {
+                display: block;
+                margin-bottom: 5px;
+            }
+        }
+
+        .ai-disclaimer {
+            font-family: var(--font-mono); /* Usa la misma fuente de máquina de escribir */
+            color: #444444; /* Un gris muy oscuro para que sea sutil */
+            font-size: 0.7rem;
+            margin-top: 25px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="#" class="brand-group">
+                <div class="logo">
+                    <img src="logo_svg.svg" alt="Vitrol Labs Logo">
+                </div>
+                <span class="brand-name">Vitrol Labs</span>
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#core">01. Distillation</a></li>
+                    <li><a href="#core">02. Bio-Compounds</a></li>
+                    <li><a href="#projects">03. The Codex</a></li>
+                    <li><a href="#contact" class="btn-nav">Initiate Connection</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Transmuting Data into Sovereign Systems.</h1>
+            <p>From digital to organic. We distill advanced automation and atavistic biotechnology under a single geometry.</p>
+            <a href="#core" class="btn-primary">Explore the Lab</a>
+        </div>
+    </section>
+
+    <section id="core">
+        <div class="container">
+            <h2 class="section-title">Core Directives</h2>
+            <div class="core-grid">
+                <div class="core-card">
+                    <h3>A. Software Distillation</h3>
+                    <blockquote>"Code is our alchemy."</blockquote>
+                    <p>We develop hyper-efficient automation ecosystems using Python and specialized APIs (WhatsApp/Google). We don’t just build tools; we refine processes until only their purest essence remains.</p>
+                </div>
+                <div class="core-card">
+                    <h3>B. Bio-Optimized Compounds</h3>
+                    <blockquote>"Nature, Engineered."</blockquote>
+                    <p>Resource engineering based on high-performance insect protein. We elevate sustainable nutrition to laboratory standards, delivering vital energy through precise science.</p>
+                </div>
+                <div class="core-card">
+                    <h3>C. Phygital Streetwear</h3>
+                    <blockquote>"Contained Complexity."</blockquote>
+                    <p>Garments that breathe. Our industrial streetwear line integrates Augmented Reality (AR) to merge your physical identity with the digital plane.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="manifesto">
+        <p>"At Vitrol Labs, information chaos is our raw material. Following the geometry of the dodecahedron, we rectify the inefficient and coagulate solid solutions. Welcome to the intersection of code, blood, and stars."</p>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Active Projects</h2>
+            <ul class="projects-list">
+                <li><strong>Smart Scheduling:</strong> AI WhatsApp bot integrated with Google Calendar.</li>
+                <li><strong>Bio-Compound V.1:</strong> The future of entomophagous protein.</li>
+                <li><strong>AR Wearables:</strong> Industrial-grade streetwear with digital layers.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container" style="max-width: 600px;">
+            <h2 class="section-title">Submit Inquiry</h2>
+            <form action="#">
+                <div class="form-group">
+                    <input type="text" placeholder="Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <select required>
+                        <option value="" disabled selected>Select Project Type...</option>
+                        <option value="software">Software / Automation</option>
+                        <option value="bio">Bio-Compounds</option>
+                        <option value="phygital">Phygital Wearables</option>
+                        <option value="other">Other Inquiry</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer;">Submit Connection</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Vitrol Labs. All rights reserved. | Pereira - Dosquebradas, Colombia.</p>
+        <p class="latin-quote">"Visit Interiora Terrae Rectificando Invenies Occultum Lapidem."</p>
+        <p class="ai-disclaimer">Developed with AI assistance (Google Gemini).</p>
+    </footer>
+
+</body>
+</html>
