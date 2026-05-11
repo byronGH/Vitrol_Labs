@@ -9,7 +9,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-mono/style.css">
 
     <style>
-        /* Estilos Base */
+        :root {
+            --obsidian: #09090D;
+            --steel-dark: #141421;
+            --steel-mid: #252535;
+            --steel-light: #7E8FA0;
+            --fog-white: #C8C5BC;
+            --crimson: #C41E3A;
+            --neon-red: #FF2444;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -17,42 +26,29 @@
         }
 
         body {
-            background-color: #050505;
-            color: #ffffff;
+            background-color: var(--obsidian);
+            color: var(--fog-white); /* Warm-tinted white */
             font-family: 'Geist Sans', sans-serif;
             line-height: 1.5;
             overflow-x: hidden;
         }
 
-        /* --- CONFIGURACIÓN DE TÍTULOS (ULTRA BLACK & SPACING) --- */
+        /* --- TIPOGRAFÍA ULTRA BLACK --- */
         h1 {
-            font-family: 'Geist Sans', sans-serif;
-            font-weight: 900; /* Ultra Black */
-            letter-spacing: -0.05em; /* Spacing -5% */
-            line-height: 0.9;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            line-height: 0.85;
             text-transform: uppercase;
+            color: #ffffff; /* El H1 se mantiene blanco puro para máximo impacto */
         }
 
         h2, h3 {
-            font-family: 'Geist Sans', sans-serif;
-            font-weight: 800; /* Extra Bold/Black */
+            font-weight: 800;
             letter-spacing: -0.05em;
             text-transform: uppercase;
         }
 
-        p {
-            font-family: 'Geist Sans', sans-serif;
-            font-weight: 400;
-            letter-spacing: -0.02em; /* Un poco menos de tracking para lectura */
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* --- NAVBAR: Único lugar con Geist Mono --- */
+        /* --- NAVBAR: GEIST MONO --- */
         .navbar {
             padding: 30px 0;
             position: absolute;
@@ -63,23 +59,15 @@
         .brand-name {
             font-family: 'Geist Mono', monospace;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1rem;
             letter-spacing: 0.1em;
-            text-transform: uppercase;
+            color: var(--fog-white);
         }
 
         .navbar .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .brand-group {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: white;
-            gap: 12px;
         }
 
         .nav-menu {
@@ -90,18 +78,28 @@
         }
 
         .nav-menu a {
-            color: #fff;
+            color: var(--steel-light);
             text-decoration: none;
             font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            transition: 0.3s;
         }
 
-        @media (max-width: 768px) {
-            .nav-menu li:not(:last-child) {
-                display: none;
-            }
+        .nav-menu a:hover {
+            color: var(--neon-red);
+        }
+
+        .btn-connection {
+            border: 1px solid var(--steel-mid);
+            padding: 10px 20px;
+            color: var(--fog-white) !important;
+            transition: all 0.3s ease;
+        }
+
+        .btn-connection:hover {
+            border-color: var(--neon-red);
+            background: rgba(255, 36, 68, 0.05);
         }
 
         /* --- HERO SECTION --- */
@@ -130,84 +128,102 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.9) 100%);
+            /* El void que emerge del Obsidian */
+            background: linear-gradient(to bottom, rgba(9, 9, 13, 0.7) 0%, var(--obsidian) 100%);
             z-index: -1;
         }
 
         .hero h1 {
-            font-size: clamp(3.5rem, 12vw, 6rem); /* Títulos masivos */
-            margin-bottom: 20px;
-            max-width: 900px;
+            font-size: clamp(3.5rem, 12vw, 6.5rem);
+            margin-bottom: 25px;
         }
 
         .hero p {
-            font-size: clamp(1rem, 3vw, 1.2rem);
-            color: #eee;
-            max-width: 600px;
+            font-size: clamp(1rem, 3vw, 1.1rem);
+            color: var(--steel-light);
+            max-width: 500px;
             margin-bottom: 40px;
         }
 
         .btn-primary {
             display: inline-block;
-            padding: 18px 45px;
-            background-color: #fff;
-            color: #000;
+            padding: 20px 45px;
+            background-color: var(--neon-red); /* Critical CTA */
+            color: white;
             text-decoration: none;
             font-weight: 900;
             font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: -0.02em;
-            transition: 0.2s ease;
+            letter-spacing: 0.05em;
+            transition: 0.3s;
         }
 
         .btn-primary:hover {
-            background-color: #ff0000; /* Un toque de rojo industrial */
-            color: #fff;
+            background-color: var(--crimson);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(196, 30, 58, 0.3);
         }
 
         /* --- CORE DIRECTIVES --- */
         #core {
-            padding: 120px 0;
-            background-color: #050505;
+            padding: 140px 0;
+            background-color: var(--obsidian);
         }
 
         .section-title {
-            font-size: clamp(1.5rem, 5vw, 2.5rem);
-            margin-bottom: 60px;
-            border-left: 8px solid #fff;
-            padding-left: 20px;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            margin-bottom: 80px;
+            border-left: 4px solid var(--neon-red); /* Accent for triggers */
+            padding-left: 25px;
         }
 
         .core-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            gap: 60px;
         }
 
         .core-card {
-            border-top: 1px solid #333;
-            padding-top: 30px;
+            border-left: 1px solid var(--steel-dark);
+            padding-left: 30px;
+            transition: all 0.4s ease;
+        }
+
+        .core-card:hover {
+            border-left-color: var(--steel-light);
         }
 
         .core-card h3 {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             margin-bottom: 15px;
+            color: var(--fog-white);
         }
 
         .core-card p {
-            color: #888;
+            color: var(--steel-light);
             font-size: 0.95rem;
         }
 
-        blockquote {
-            font-weight: 700;
-            color: #ff0000;
-            margin-bottom: 10px;
+        .card-label {
+            font-family: 'Geist Mono', monospace;
+            color: var(--crimson);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 0.1em;
+            margin-bottom: 10px;
+            display: block;
         }
 
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu li:not(:last-child) { display: none; }
+            .hero h1 { line-height: 0.9; }
+        }
     </style>
 </head>
 <body>
@@ -215,15 +231,15 @@
     <header class="navbar">
         <div class="container">
             <a href="#" class="brand-group">
-                <img src="vlogo.webp" alt="Logo" style="width: 28px; height: auto;">
+                <img src="vlogo.webp" alt="Logo" style="width: 26px; height: auto;">
                 <span class="brand-name">VITROL LABS</span>
             </a>
             <nav>
                 <ul class="nav-menu">
-                    <li><a href="#core">01. Distillation</a></li>
-                    <li><a href="#core">02. Bio-Compounds</a></li>
-                    <li><a href="#projects">03. The Codex</a></li>
-                    <li><a href="#contact" style="border: 1px solid #fff; padding: 10px 20px;">Initiate Connection</a></li>
+                    <li><a href="#core">01 Distill</a></li>
+                    <li><a href="#core">02 Bio</a></li>
+                    <li><a href="#projects">03 Codex</a></li>
+                    <li><a href="#contact" class="btn-connection">INITIATE CONNECTION</a></li>
                 </ul>
             </nav>
         </div>
@@ -237,8 +253,8 @@
         <div class="hero-overlay"></div>
 
         <div class="container">
-            <h1>Transmuting<br>Data into<br>Sovereign<br>Systems.</h1>
-            <p>From digital to organic. We distill advanced automation and atavistic biotechnology into sovereign digital ecosystems.</p>
+            <h1>TRANSMUTING<br>DATA INTO<br>SOVEREIGN<br>SYSTEMS.</h1>
+            <p>We distill advanced automation and atavistic biotechnology into sovereign digital ecosystems.</p>
             <a href="#core" class="btn-primary">Explore the Lab</a>
         </div>
     </section>
@@ -248,19 +264,19 @@
             <h2 class="section-title">Core Directives</h2>
             <div class="core-grid">
                 <div class="core-card">
-                    <blockquote>[ Alchemy Mode ]</blockquote>
-                    <h3>A. Software Distillation</h3>
-                    <p>We develop hyper-efficient automation ecosystems using Python and AI.</p>
+                    <span class="card-label">// Circuit Node 01</span>
+                    <h3>Software Distillation</h3>
+                    <p>Hyper-efficient automation ecosystems powered by Python and architectural AI.</p>
                 </div>
                 <div class="core-card">
-                    <blockquote>[ Nature Engineered ]</blockquote>
-                    <h3>B. Bio-Optimized Compounds</h3>
-                    <p>Resource engineering based on high-performance systems and organic logic.</p>
+                    <span class="card-label">// Circuit Node 02</span>
+                    <h3>Bio-Optimized</h3>
+                    <p>Resource engineering based on high-performance organic logic.</p>
                 </div>
                 <div class="core-card">
-                    <blockquote>[ Contained Complexity ]</blockquote>
-                    <h3>C. Phygital Streetwear</h3>
-                    <p>Garments that breathe. Our industrial streetwear line integrates augmented reality.</p>
+                    <span class="card-label">// Circuit Node 03</span>
+                    <h3>Phygital Gear</h3>
+                    <p>Industrial streetwear integrated with augmented reality triggers.</p>
                 </div>
             </div>
         </div>
