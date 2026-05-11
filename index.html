@@ -33,9 +33,9 @@
             overflow-x: hidden;
         }
 
-        /* --- NAVBAR --- */
+        /* --- NAVBAR GRUESA E INDUSTRIAL --- */
         .navbar {
-            padding: 40px 0; 
+            padding: 45px 0; 
             position: absolute;
             width: 100%;
             z-index: 10;
@@ -53,34 +53,29 @@
             display: flex;
             align-items: center;
             text-decoration: none;
-            gap: 18px;
+            gap: 20px;
         }
 
-        .brand-logo { width: 45px; height: auto; }
+        .brand-logo { width: 48px; height: auto; } /* Logo más grande */
 
         .brand-name {
             font-family: 'Geist Mono', monospace;
             font-weight: 800; 
-            font-size: 1.4rem; 
-            letter-spacing: 0.15em;
+            font-size: 1.5rem; 
+            letter-spacing: 0.1em;
             color: #ffffff;
             text-transform: uppercase;
         }
 
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .nav-menu a {
-            color: var(--fog-white);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 800;
+        /* --- CONFIGURACIÓN DE TÍTULOS --- */
+        h1 {
+            font-weight: 900;
+            letter-spacing: -0.05em; /* Spacing -5% */
+            line-height: 0.85;
             text-transform: uppercase;
-            letter-spacing: -0.03em;
+            font-size: clamp(3.5rem, 12vw, 6.5rem);
+            color: #ffffff;
+            margin-bottom: 30px;
         }
 
         /* --- HERO SECTION --- */
@@ -90,7 +85,7 @@
             display: flex;
             align-items: center;
             overflow: hidden;
-            padding-top: 150px;
+            padding-top: 180px;
         }
 
         .hero-video {
@@ -105,78 +100,82 @@
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(9, 9, 13, 0.85) 0%, var(--obsidian) 100%);
+            background: linear-gradient(to bottom, rgba(9, 9, 13, 0.8) 0%, var(--obsidian) 100%);
             z-index: -1;
-        }
-
-        .hero h1 {
-            font-weight: 900;
-            letter-spacing: -0.05em;
-            line-height: 0.85;
-            text-transform: uppercase;
-            font-size: clamp(3.5rem, 12vw, 6.5rem);
-            color: #ffffff;
-            margin-bottom: 30px;
         }
 
         .hero p {
             font-size: 1.1rem;
             color: var(--steel-light);
-            max-width: 500px;
+            max-width: 550px;
             margin-bottom: 50px;
+            font-weight: 500;
+            letter-spacing: -0.02em;
         }
 
-        /* --- BOTÓN EXPLORE THE LAB (GLASSMORPHISM & GLOW) --- */
-        .btn-glass-glow {
+        /* --- BOTÓN VARIANTE 3: INDUSTRIAL NOTCH + ESCÁNER --- */
+        .btn-industrial {
+            position: relative;
             display: inline-block;
-            padding: 20px 60px;
+            padding: 22px 55px;
+            background: rgba(37, 37, 53, 0.3); /* Steel Mid con Glassmorfismo */
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--steel-mid);
+            color: #ffffff;
             text-decoration: none;
             font-weight: 900;
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            color: #ffffff;
             
-            /* Forma Elíptica */
-            border-radius: 100px;
-            
-            /* Glassmorphism */
-            background: rgba(196, 30, 58, 0.1); /* Tinte Crimson muy suave */
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            
-            /* Borde sutil */
-            border: 1px solid rgba(255, 36, 68, 0.3);
-            
-            /* Emisión de luz (Glow) */
-            box-shadow: 0 0 20px rgba(196, 30, 58, 0.2), 
-                        inset 0 0 12px rgba(255, 36, 68, 0.1);
+            /* Muesca técnica en la esquina superior derecha */
+            clip-path: polygon(0% 0%, 88% 0%, 100% 30%, 100% 100%, 0% 100%);
             
             transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            position: relative;
-            overflow: hidden;
+            overflow: hidden; /* Necesario para el efecto de escáner */
         }
 
-        .btn-glass-glow:hover {
-            background: rgba(255, 36, 68, 0.2);
+        /* Efecto de Escáner (Barrido de Luz) */
+        .btn-industrial::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(
+                to right,
+                transparent,
+                rgba(255, 36, 68, 0.4), /* Neon Red */
+                transparent
+            );
+            transform: skewX(-25deg);
+            animation: scanner 5s infinite ease-in-out;
+        }
+
+        @keyframes scanner {
+            0% { left: -100%; }
+            20% { left: 120%; }
+            100% { left: 120%; }
+        }
+
+        .btn-industrial:hover {
+            background: rgba(196, 30, 58, 0.2); /* Tinte Crimson */
             border-color: var(--neon-red);
-            
-            /* Intensificación del brillo */
-            box-shadow: 0 0 40px rgba(255, 36, 68, 0.5), 
-                        0 0 10px rgba(255, 36, 68, 0.3);
-            
-            transform: translateY(-3px) scale(1.02);
-            letter-spacing: 0.2em; /* Efecto expansivo */
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(255, 36, 68, 0.2);
         }
 
         .container {
             max-width: 1300px;
             margin: 0 auto;
-            padding: 0 30px;
+            padding: 0 35px;
         }
 
         @media (max-width: 768px) {
-            .nav-menu { display: none; }
+            .navbar { padding: 30px 0; }
+            .brand-name { font-size: 1.1rem; }
+            .brand-logo { width: 35px; }
         }
     </style>
 </head>
@@ -189,11 +188,9 @@
                 <span class="brand-name">VITROL LABS</span>
             </a>
             <nav>
-                <ul class="nav-menu">
-                    <li><a href="#core">01 DISTILL</a></li>
-                    <li><a href="#core">02 BIO</a></li>
-                    <li><a href="#projects">03 CODEX</a></li>
-                </ul>
+                <div style="font-family: 'Geist Mono'; font-size: 0.7rem; color: var(--steel-light);">
+                    // SYSTEM READY
+                </div>
             </nav>
         </div>
     </header>
@@ -207,9 +204,9 @@
 
         <div class="container">
             <h1>TRANSMUTING<br>DATA INTO<br>SOVEREIGN<br>SYSTEMS.</h1>
-            <p>From digital to organic. High-end automation distilled into sovereign digital ecosystems.</p>
+            <p>Destilamos automatización avanzada y biotecnología atávica en ecosistemas digitales soberanos.</p>
             
-            <a href="#core" class="btn-glass-glow">Explore the Lab</a>
+            <a href="#core" class="btn-industrial">Explore the Lab</a>
         </div>
     </section>
 
