@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vitrol Labs | Phygital Innovation</title>
+    <title>Vitrol Labs | Sovereign Systems</title>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-mono/style.css">
@@ -19,17 +19,31 @@
         body {
             background-color: #050505;
             color: #ffffff;
-            /* Fuente predeterminada para el cuerpo: Geist Mono */
-            font-family: 'Geist Mono', monospace;
-            line-height: 1.6;
+            font-family: 'Geist Sans', sans-serif;
+            line-height: 1.5;
             overflow-x: hidden;
         }
 
-        /* Tipografía específica para Títulos: Geist Sans */
-        h1, h2, h3, .brand-name, .btn-primary {
+        /* --- CONFIGURACIÓN DE TÍTULOS (ULTRA BLACK & SPACING) --- */
+        h1 {
             font-family: 'Geist Sans', sans-serif;
-            font-weight: 700;
-            letter-spacing: -0.02em;
+            font-weight: 900; /* Ultra Black */
+            letter-spacing: -0.05em; /* Spacing -5% */
+            line-height: 0.9;
+            text-transform: uppercase;
+        }
+
+        h2, h3 {
+            font-family: 'Geist Sans', sans-serif;
+            font-weight: 800; /* Extra Bold/Black */
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-family: 'Geist Sans', sans-serif;
+            font-weight: 400;
+            letter-spacing: -0.02em; /* Un poco menos de tracking para lectura */
         }
 
         .container {
@@ -38,12 +52,20 @@
             padding: 0 20px;
         }
 
-        /* --- NAVBAR --- */
+        /* --- NAVBAR: Único lugar con Geist Mono --- */
         .navbar {
-            padding: 20px 0;
+            padding: 30px 0;
             position: absolute;
             width: 100%;
             z-index: 10;
+        }
+
+        .brand-name {
+            font-family: 'Geist Mono', monospace;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
 
         .navbar .container {
@@ -57,7 +79,7 @@
             align-items: center;
             text-decoration: none;
             color: white;
-            gap: 10px;
+            gap: 12px;
         }
 
         .nav-menu {
@@ -68,22 +90,12 @@
         }
 
         .nav-menu a {
-            color: #888;
-            text-decoration: none;
-            font-size: 0.75rem; /* Estética minimalista */
-            text-transform: uppercase;
-            transition: 0.3s;
-            letter-spacing: 0.05em;
-        }
-
-        .nav-menu a:hover {
             color: #fff;
-        }
-
-        .btn-nav {
-            border: 1px solid #fff;
-            padding: 8px 16px;
-            white-space: nowrap;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         @media (max-width: 768px) {
@@ -99,7 +111,7 @@
             display: flex;
             align-items: center;
             overflow: hidden;
-            padding: 100px 0;
+            padding: 120px 0;
         }
 
         .hero-video {
@@ -118,101 +130,82 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0.85) 0%, 
-                rgba(0, 0, 0, 0.4) 50%, 
-                rgba(0, 0, 0, 0.95) 100%
-            );
+            background: radial-gradient(circle at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.9) 100%);
             z-index: -1;
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 4rem);
-            line-height: 0.95;
-            margin-bottom: 24px;
-            max-width: 850px;
-            text-transform: uppercase;
+            font-size: clamp(3.5rem, 12vw, 6rem); /* Títulos masivos */
+            margin-bottom: 20px;
+            max-width: 900px;
         }
 
         .hero p {
-            font-family: 'Geist Mono', monospace;
-            font-size: clamp(0.9rem, 3vw, 1.1rem);
-            color: #aaa;
-            max-width: 550px;
-            margin-bottom: 35px;
-            opacity: 0.9;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            color: #eee;
+            max-width: 600px;
+            margin-bottom: 40px;
         }
 
         .btn-primary {
             display: inline-block;
-            padding: 16px 40px;
+            padding: 18px 45px;
             background-color: #fff;
             color: #000;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-weight: 900;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            transition: 0.3s;
+            letter-spacing: -0.02em;
+            transition: 0.2s ease;
         }
 
         .btn-primary:hover {
-            background-color: #ccc;
-            transform: scale(1.02);
+            background-color: #ff0000; /* Un toque de rojo industrial */
+            color: #fff;
         }
 
         /* --- CORE DIRECTIVES --- */
         #core {
-            padding: 100px 0;
+            padding: 120px 0;
             background-color: #050505;
         }
 
         .section-title {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
             margin-bottom: 60px;
-            text-transform: uppercase;
-            border-left: 2px solid #fff;
-            padding-left: 25px;
+            border-left: 8px solid #fff;
+            padding-left: 20px;
         }
 
         .core-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
+            gap: 40px;
         }
 
         .core-card {
-            background: #080808;
-            padding: 45px;
-            border: 1px solid #151515;
-            transition: border-color 0.4s ease;
-        }
-
-        .core-card:hover {
-            border-color: #333;
+            border-top: 1px solid #333;
+            padding-top: 30px;
         }
 
         .core-card h3 {
-            margin-bottom: 20px;
-            font-size: 1.25rem;
-            text-transform: uppercase;
-        }
-
-        blockquote {
-            font-family: 'Geist Mono', monospace;
-            font-style: normal;
-            color: #555;
-            margin-bottom: 20px;
-            border-left: 1px solid #222;
-            padding-left: 20px;
-            font-size: 0.85rem;
-            text-transform: lowercase;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
         }
 
         .core-card p {
-            font-family: 'Geist Mono', monospace;
             color: #888;
-            font-size: 0.9rem;
-            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        blockquote {
+            font-weight: 700;
+            color: #ff0000;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
         }
 
     </style>
@@ -222,15 +215,15 @@
     <header class="navbar">
         <div class="container">
             <a href="#" class="brand-group">
-                <img src="vlogo.webp" alt="Logo" style="width: 32px; height: auto;">
-                <span class="brand-name">Vitrol Labs</span>
+                <img src="vlogo.webp" alt="Logo" style="width: 28px; height: auto;">
+                <span class="brand-name">VITROL LABS</span>
             </a>
             <nav>
                 <ul class="nav-menu">
                     <li><a href="#core">01. Distillation</a></li>
                     <li><a href="#core">02. Bio-Compounds</a></li>
                     <li><a href="#projects">03. The Codex</a></li>
-                    <li><a href="#contact" class="btn-nav">Initiate Connection</a></li>
+                    <li><a href="#contact" style="border: 1px solid #fff; padding: 10px 20px;">Initiate Connection</a></li>
                 </ul>
             </nav>
         </div>
@@ -244,7 +237,7 @@
         <div class="hero-overlay"></div>
 
         <div class="container">
-            <h1>Transmuting Data into Sovereign Systems.</h1>
+            <h1>Transmuting<br>Data into<br>Sovereign<br>Systems.</h1>
             <p>From digital to organic. We distill advanced automation and atavistic biotechnology into sovereign digital ecosystems.</p>
             <a href="#core" class="btn-primary">Explore the Lab</a>
         </div>
@@ -255,18 +248,18 @@
             <h2 class="section-title">Core Directives</h2>
             <div class="core-grid">
                 <div class="core-card">
+                    <blockquote>[ Alchemy Mode ]</blockquote>
                     <h3>A. Software Distillation</h3>
-                    <blockquote>// code is our alchemy</blockquote>
                     <p>We develop hyper-efficient automation ecosystems using Python and AI.</p>
                 </div>
                 <div class="core-card">
+                    <blockquote>[ Nature Engineered ]</blockquote>
                     <h3>B. Bio-Optimized Compounds</h3>
-                    <blockquote>// nature, engineered</blockquote>
                     <p>Resource engineering based on high-performance systems and organic logic.</p>
                 </div>
                 <div class="core-card">
+                    <blockquote>[ Contained Complexity ]</blockquote>
                     <h3>C. Phygital Streetwear</h3>
-                    <blockquote>// contained complexity</blockquote>
                     <p>Garments that breathe. Our industrial streetwear line integrates augmented reality.</p>
                 </div>
             </div>
